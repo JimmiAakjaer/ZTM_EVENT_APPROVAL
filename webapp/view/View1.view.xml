@@ -1,0 +1,130 @@
+<mvc:View
+    controllerName="ZTM_EVENT_APPROVAL.controller.View1"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:table="sap.ui.table"
+    height="100%"
+>
+    <VBox fitContainer="true">
+        <smartFilterBar:SmartFilterBar
+            id="smartFilterBar"
+            persistencyKey="UniqueAndStablePersistencyKey"
+            filterBarExpanded="true"
+            entitySet="ListSet"
+            showClearButton="true"
+            showClearOnFB="true"
+            showRestoreOnFB="false"
+            considerSelectionVariants="true"
+            visible="true"
+        >
+            <!-- layout data used to make the table growing but the filter bar fixed -->
+            <smartFilterBar:controlConfiguration>
+                <smartFilterBar:ControlConfiguration
+                    id="Filter01"
+                    index="1"
+                    key="TorId"
+                    visibleInAdvancedArea="true"
+                />
+                <smartFilterBar:ControlConfiguration
+                    id="Filter02"
+                    index="2"
+                    key="Tspid"
+                    visibleInAdvancedArea="true"
+                />
+                <smartFilterBar:ControlConfiguration
+                    id="Filter03"
+                    index="3"
+                    key="CreatedOnFrom"
+                    visibleInAdvancedArea="true"
+                    mandatory="mandatory"
+                />
+                <smartFilterBar:ControlConfiguration
+                    id="Filter04"
+                    index="4"
+                    key="CreatedOnTo"
+                    visibleInAdvancedArea="true"
+                    mandatory="mandatory"
+                />
+                <smartFilterBar:ControlConfiguration
+                    id="Filter05"
+                    index="5"
+                    key="Driver"
+                    visibleInAdvancedArea="true"
+                />
+                <smartFilterBar:ControlConfiguration
+                    id="Filter06"
+                    index="6"
+                    key="EvtStatus"
+                    visibleInAdvancedArea="true"
+                />
+            </smartFilterBar:controlConfiguration>
+            <smartFilterBar:layoutData>
+                <FlexItemData shrinkFactor="0" />
+            </smartFilterBar:layoutData>
+        </smartFilterBar:SmartFilterBar>
+
+        <!-- SmartTable with Initial Fields -->
+        <smartTable:SmartTable
+            id="table001"
+            entitySet="ListSet"
+            tableType="TreeTable"
+            smartFilterId="smartFilterBar"
+            useVariantManagement="true"
+            useTablePersonalisation="true"
+            header="TM: Event Approval"
+            showRowCount="true"
+            beforeRebindTable="onBeforeRebindTable"
+            useExportToExcel="true"
+            beforeExport="onBeforeExport"
+            initiallyVisibleFields="TorId,Tspid,ResId,GroWeiVal,EvtLocName,EvtDescription,EvtReason,EvtReasonDesc,EvtStatus,ApprovedBy,ApprovedOn"
+            enableAutoColumnWidth="true"
+        >
+            <!-- Extra Buttons -->
+            <smartTable:customToolbar>
+                <OverflowToolbar design="Transparent">
+                    <ToolbarSpacer />
+                    <Button
+                        type="Default"
+                        icon="sap-icon://add-document"
+                        iconFirst="true"
+                        tooltip="Report New Event"
+                        text="Report New Event"
+                        press="openNewEventDialog"
+                    />
+                    <Button
+                        type="Accept"
+                        icon="sap-icon://accept"
+                        iconFirst="true"
+                        tooltip="Approved"
+                        text="Approved"
+                        press="onApproved"
+                    />
+                    <Button
+                        type="Reject"
+                        icon="sap-icon://decline"
+                        iconFirst="true"
+                        tooltip="Not Approved"
+                        text="Not Approved"
+                        press="onNotApproved"
+                    />
+                    <Button
+                        type="Transparent"
+                        icon="sap-icon://refresh"
+                        iconFirst="true"
+                        tooltip="Refresh"
+                        press="onRefresh"
+                    />
+                </OverflowToolbar>
+            </smartTable:customToolbar>
+
+            <!-- layout data used to make the table growing but the filter bar fixed -->
+            <smartTable:layoutData>
+                <FlexItemData growFactor="1" />
+            </smartTable:layoutData>
+        </smartTable:SmartTable>
+    </VBox>
+</mvc:View>

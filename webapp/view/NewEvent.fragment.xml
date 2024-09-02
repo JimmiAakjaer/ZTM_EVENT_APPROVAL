@@ -1,0 +1,198 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:upload="sap.m.upload"
+>
+    <Dialog
+        id="NewEventSet"
+        title="Report New Event"
+        contentHeight="500px"
+        contentWidth="860px"
+        stretch="{:= ${device>/system/phone}}"
+        class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+    >
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:Form
+                    id="FormChange354wide"
+                    editable="true"
+                >
+                    <f:layout>
+                        <f:ResponsiveGridLayout
+                            labelSpanXL="4"
+                            labelSpanL="3"
+                            labelSpanM="4"
+                            labelSpanS="12"
+                            adjustLabelSpan="false"
+                            emptySpanXL="0"
+                            emptySpanL="4"
+                            emptySpanM="0"
+                            emptySpanS="0"
+                            columnsXL="2"
+                            columnsL="1"
+                            columnsM="1"
+                            singleContainerFullSize="false"
+                        />
+                    </f:layout>
+                    <f:formContainers>
+                        <f:FormContainer>
+                            <f:formElements>
+                                <f:FormElement label="Freight Order">
+                                    <f:fields>
+                                        <MultiInput
+                                            id="TorId"
+                                            showValueHelp="true"
+                                            showSuggestion="true"
+                                            maxTokens="1"
+                                            required="true"
+                                            valueHelpRequest=".onVHTorId"
+                                        />
+                                    </f:fields>
+                                    <Button
+                                        type="Accept"
+                                        icon="sap-icon://accept"
+                                        iconFirst="true"
+                                        tooltip="Confirm"
+                                        text="Confirm"
+                                        press="onGetEvent"
+                                    />
+                                </f:FormElement>
+                                <f:FormElement label="Event">
+                                    <f:fields>
+                                        <MultiInput
+                                            id="Event"
+                                            showValueHelp="true"
+                                            showSuggestion="true"
+                                            maxTokens="1"
+                                            enabled="false"
+                                            required="true"
+                                            valueHelpRequest=".onVHEvent"
+                                        />
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Event Reason">
+                                    <f:fields>
+                                        <MultiInput
+                                            id="EventReason"
+                                            showValueHelp="false"
+                                            showSuggestion="false"
+                                            maxTokens="1"
+                                            enabled="false"
+                                        />
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Event Reason Code">
+                                    <f:fields>
+                                        <MultiInput
+                                            id="EventReasonCode"
+                                            showValueHelp="true"
+                                            showSuggestion="true"
+                                            maxTokens="1"
+                                            enabled="false"
+                                            valueHelpRequest=".onVHEventReasonCode"
+                                        />
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Planned Date">
+                                    <f:fields>
+                                        <Text id="PlannedDate" />
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Actual Event Date">
+                                    <f:fields>
+                                        <DatePicker
+                                            id="ActualEventDate"
+                                            enabled="false"
+                                            displayFormat="dd/MM/y"
+                                            width="230px"
+                                        />
+                                    </f:fields>
+                                    <f:fields>
+                                        <TimePicker
+                                            id="ActualEventTime"
+                                            enabled="false"
+                                            width="100%"
+                                        />
+                                    </f:fields>
+                                    <f:fields>
+                                        <Text
+                                            text="CET"
+                                            textAlign="Center"
+                                        />
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Location">
+                                    <f:fields>
+                                        <MultiInput
+                                            id="Location"
+                                            showValueHelp="true"
+                                            showSuggestion="true"
+                                            maxTokens="1"
+                                            enabled="false"
+                                            valueHelpRequest=".onVHLocation"
+                                        />
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Item">
+                                    <f:fields>
+                                        <MultiInput
+                                            id="Item"
+                                            showValueHelp="true"
+                                            showSuggestion="true"
+                                            maxTokens="1"
+                                            enabled="false"
+                                            required="true"
+                                            valueHelpRequest=".onVHItem"
+                                        />
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement
+                                    label="Source of Exec. Information"
+                                >
+                                    <f:fields>
+                                        <Text
+                                            text="Recorded Directly in this Document"
+                                        />
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Attachments">
+                                    <u:FileUploader
+                                        id="uploadSet"
+                                        enabled="false"
+                                        fileType="pdf,doc,docx,xls,xlsx,ppt,pptx,txt"
+                                        tooltip="Upload your file"
+                                        change="_handleChangeFileUploader"
+                                    />
+                                </f:FormElement>
+                            </f:formElements>
+                        </f:FormContainer>
+                    </f:formContainers>
+                </f:Form>
+            </VBox>
+        </content>
+        <buttons>
+            <Button
+                id="btnSave"
+                text="Save"
+                press=".onCreateEvent"
+                icon="sap-icon://save"
+                type="Emphasized"
+                enabled="false"
+            />
+            <Button
+                press=".onCloseDialog"
+                text="Cancel"
+                icon="sap-icon://cancel"
+            />
+        </buttons>
+        <endButton>
+            <Button
+                press=".onCloseDialog"
+                text="Ok"
+            />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
