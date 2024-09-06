@@ -193,11 +193,23 @@ sap.ui.define(
             var oItem = oBindingContext.getObject();
             var oUpdateItem = {
               NodeID: oItem.NodeID,
+              HierarchyLevel: oItem.HierarchyLevel,
               ParentNodeID: oItem.ParentNodeID,
+              DrillState: oItem.DrillState,
               TorId: oItem.TorId,
               Tspid: oItem.Tspid,
+              ResId: oItem.ResId,
+              Driver: oItem.Driver,
+              GroWeiVal: oItem.GroWeiVal,
+              EvtLocName: oItem.EvtLocName,
+              EvtDescription: oItem.EvtDescription,
+              EvtReason: oItem.EvtReason,
               EvtReasonDesc: oItem.EvtReasonDesc,
-              EvtReason: oItem.EvtReason
+              EvtStatus: oItem.EvtStatus,
+              ApprovedBy: oItem.ApprovedBy,
+              ApprovedOn: oItem.ApprovedOn,
+              CreatedOnFrom: oItem.CreatedOnFrom,
+              CreatedOnTo: oItem.CreatedOnTo,
             };
 
             // Updating (Individually with GroupId for Batch)
@@ -279,11 +291,23 @@ sap.ui.define(
             var oItem = oBindingContext.getObject();
             var oUpdateItem = {
               NodeID: oItem.NodeID,
+              HierarchyLevel: oItem.HierarchyLevel,
               ParentNodeID: oItem.ParentNodeID,
+              DrillState: oItem.DrillState,
               TorId: oItem.TorId,
               Tspid: oItem.Tspid,
+              ResId: oItem.ResId,
+              Driver: oItem.Driver,
+              GroWeiVal: oItem.GroWeiVal,
+              EvtLocName: oItem.EvtLocName,
+              EvtDescription: oItem.EvtDescription,
+              EvtReason: oItem.EvtReason,
               EvtReasonDesc: oItem.EvtReasonDesc,
-              EvtReason: oItem.EvtReason
+              EvtStatus: oItem.EvtStatus,
+              ApprovedBy: oItem.ApprovedBy,
+              ApprovedOn: oItem.ApprovedOn,
+              CreatedOnFrom: oItem.CreatedOnFrom,
+              CreatedOnTo: oItem.CreatedOnTo,
             };
 
             // Updating (Individually with GroupId for Batch)
