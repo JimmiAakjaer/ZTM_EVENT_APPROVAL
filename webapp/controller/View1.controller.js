@@ -457,7 +457,7 @@ sap.ui.define(
               var eventData = oData.results[0];
               that._setEnabled(true);
 
-              if (eventData.EvtCode && that.multiInputs[0]) {
+              /*if (eventData.EvtCode && that.multiInputs[0]) {
                 that.multiInputs[0].setTokens([
                   new sap.m.Token({
                     text:
@@ -465,7 +465,7 @@ sap.ui.define(
                     key: eventData.EvtCode,
                   }),
                 ]);
-              }
+              }*/
 
               if (eventData.EvtReason && that.multiInputs[1]) {
                 that.multiInputs[1].setTokens([
