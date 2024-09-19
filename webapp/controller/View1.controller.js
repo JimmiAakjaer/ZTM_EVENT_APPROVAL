@@ -10,7 +10,7 @@ sap.ui.define(
       onInit: function () {
         this._oModel = this.getOwnerComponent().getModel();
         this.getView().setModel(this._oModel);
-
+        /*
         var oSmartTable = this.getView().byId("table001");
 
         // Add a handler for the "dataReceived" event (to keep data on selection for oData)
@@ -30,7 +30,7 @@ sap.ui.define(
               oColumn.setVisible(false); // Hide column EvtReasonDesc
             }
           });
-        });
+        });*/
       },
       onBeforeRebindTable: function (oEvent) {
         // Define tree expansion (Level 2)
@@ -50,10 +50,15 @@ sap.ui.define(
         var oSmartTable = oEvent.getSource();
         var oTable = oSmartTable.getTable();
         var aColumns = oTable.getColumns();
+        var i = 0;
 
         aColumns.forEach(function (oColumn) {
-          var oCustomData = oColumn.getAggregation("customData")[0];
+          // Resize columns automatically
+          oColumn.getParent().autoResizeColumn(i);
+          i++;
+
           // Convert column to Link to Freight Order Display
+          var oCustomData = oColumn.getAggregation("customData")[0];
           if (oCustomData && oCustomData.getValue().columnKey === "TorId") {
             oColumn.setTemplate(
               new sap.m.Link({
@@ -204,7 +209,7 @@ sap.ui.define(
               EvtLocName: oItem.EvtLocName,
               EvtDescription: oItem.EvtDescription,
               EvtReason: oItem.EvtReason,
-              EvtReasonDesc: oItem.EvtReasonDesc,
+              //EvtReasonDesc: oItem.EvtReasonDesc,
               EvtStatus: oItem.EvtStatus,
               ApprovedBy: oItem.ApprovedBy,
               ApprovedOn: oItem.ApprovedOn,
@@ -302,7 +307,7 @@ sap.ui.define(
               EvtLocName: oItem.EvtLocName,
               EvtDescription: oItem.EvtDescription,
               EvtReason: oItem.EvtReason,
-              EvtReasonDesc: oItem.EvtReasonDesc,
+              //EvtReasonDesc: oItem.EvtReasonDesc,
               EvtStatus: oItem.EvtStatus,
               ApprovedBy: oItem.ApprovedBy,
               ApprovedOn: oItem.ApprovedOn,

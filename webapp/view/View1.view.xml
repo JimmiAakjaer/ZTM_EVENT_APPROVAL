@@ -15,10 +15,8 @@
             persistencyKey="UniqueAndStablePersistencyKey"
             filterBarExpanded="true"
             entitySet="ListSet"
-            showClearButton="true"
             showClearOnFB="true"
             showRestoreOnFB="false"
-            considerSelectionVariants="true"
             visible="true"
         >
             <!-- layout data used to make the table growing but the filter bar fixed -->
@@ -80,7 +78,7 @@
             beforeRebindTable="onBeforeRebindTable"
             useExportToExcel="true"
             beforeExport="onBeforeExport"
-            initiallyVisibleFields="TorId,Tspid,ResId,GroWeiVal,EvtLocName,EvtDescription,EvtReason,EvtReasonDesc,EvtStatus,ApprovedBy,ApprovedOn"
+            initiallyVisibleFields="TorId,Tspid,ResId,GroWeiVal,EvtLocName,EvtDescription,EvtReason,EvtStatus,ApprovedBy,ApprovedOn"
             enableAutoColumnWidth="true"
         >
             <!-- Extra Buttons -->

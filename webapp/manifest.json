@@ -1,5 +1,5 @@
 {
-  "_version": "1.7.0",
+  "_version": "1.9.0",
   "sap.app": {
     "id": "ZTM_EVENT_APPROVAL",
     "type": "application",
@@ -11,7 +11,7 @@
     "description": "{{appDescription}}",
     "sourceTemplate": {
       "id": "ui5template.basicSAPUI5ApplicationProject",
-      "version": "1.40.12",
+      "version": "1.90.12",
       "toolsId": "95626148-5462-4207-8113-006fa7436eff"
     },
     "dataSources": {
@@ -51,7 +51,7 @@
       "type": "XML"
     },
     "dependencies": {
-      "minUI5Version": "1.30.0",
+      "minUI5Version": "1.90.0",
       "libs": {
         "sap.ui.core": {},
         "sap.m": {},
