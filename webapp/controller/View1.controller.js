@@ -53,12 +53,48 @@ sap.ui.define(
         var i = 0;
 
         aColumns.forEach(function (oColumn) {
-          // Resize columns automatically
-          oColumn.getParent().autoResizeColumn(i);
-          i++;
+          var oCustomData = oColumn.getAggregation("customData")[0];
+
+          // Resize columns manually
+          if (oCustomData) {
+            switch (oCustomData.getValue().columnKey) {
+              case "TorId":
+                oColumn.setWidth("180px");
+                break;
+              case "Tspid":
+                oColumn.setWidth("180px");
+                break;
+              case "ResId":
+                oColumn.setWidth("150px");
+                break;
+              case "GroWeiVal":
+                oColumn.setWidth("120px");
+                break;
+              case "EvtLocName":
+                oColumn.setWidth("180px");
+                break;
+              case "EvtDescription":
+                oColumn.setWidth("300px");
+                break;
+              case "EvtReason":
+                oColumn.setWidth("130px");
+                break;
+              case "EvtStatus":
+                oColumn.setWidth("200px");
+                break;
+              case "ApprovedBy":
+                oColumn.setWidth("120px");
+                break;
+              case "ApprovedOn":
+                oColumn.setWidth("180px");
+                break;
+            }
+          }
+
+          //oColumn.getParent().autoResizeColumn(i); //Have a limitation just after first load
+          //i++;
 
           // Convert column to Link to Freight Order Display
-          var oCustomData = oColumn.getAggregation("customData")[0];
           if (oCustomData && oCustomData.getValue().columnKey === "TorId") {
             oColumn.setTemplate(
               new sap.m.Link({
