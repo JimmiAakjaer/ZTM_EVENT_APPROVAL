@@ -78,7 +78,7 @@
             beforeRebindTable="onBeforeRebindTable"
             useExportToExcel="true"
             beforeExport="onBeforeExport"
-            initiallyVisibleFields="TorId,Tspid,ResId,GroWeiVal,EvtLocName,EvtDescription,EvtReason,EvtStatus,ApprovedBy,ApprovedOn"
+            initiallyVisibleFields="TorId,Tspid,ResId,GroWeiVal,EvtLocName,EvtDescription,EvtReason,EvtStatus,ApprovedBy,ApprovedOn,EvtId"
             enableAutoColumnWidth="true"
         >
             <!-- Extra Buttons -->

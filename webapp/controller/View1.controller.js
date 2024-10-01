@@ -70,6 +70,9 @@ sap.ui.define(
               case "GroWeiVal":
                 oColumn.setWidth("120px");
                 break;
+              case "EvtId":
+                oColumn.setWidth("0px"); //Need to hide, key for events
+                break;
               case "EvtLocName":
                 oColumn.setWidth("180px");
                 break;
@@ -242,6 +245,7 @@ sap.ui.define(
               ResId: oItem.ResId,
               Driver: oItem.Driver,
               GroWeiVal: oItem.GroWeiVal,
+              EvtId: oItem.EvtId,
               EvtLocName: oItem.EvtLocName,
               EvtDescription: oItem.EvtDescription,
               EvtReason: oItem.EvtReason,
@@ -340,6 +344,7 @@ sap.ui.define(
               ResId: oItem.ResId,
               Driver: oItem.Driver,
               GroWeiVal: oItem.GroWeiVal,
+              EvtId: oItem.EvtId,
               EvtLocName: oItem.EvtLocName,
               EvtDescription: oItem.EvtDescription,
               EvtReason: oItem.EvtReason,
