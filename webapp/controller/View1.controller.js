@@ -785,7 +785,7 @@ sap.ui.define(
         }
       },
       _convertDate: function (dateStr) {
-        var dateParts = dateStr.split("/");
+        var dateParts = dateStr.includes("/") ? dateStr.split("/") : dateStr.split(".");
         var month = dateParts[0].padStart(2, "0");
         var day = dateParts[1].padStart(2, "0");
         var year =
