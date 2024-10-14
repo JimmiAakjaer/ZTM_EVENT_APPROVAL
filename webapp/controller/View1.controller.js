@@ -5,11 +5,17 @@ sap.ui.define(
 
     return Controller.extend("ZTM_EVENT_APPROVAL.controller.View1", {
       pDialog: null,
+      _bErrorDisplayed: false,
 
       /* View 1 */
       onInit: function () {
         this._oModel = this.getOwnerComponent().getModel();
         this.getView().setModel(this._oModel);
+
+        // Attach handler to the requestSent and requestFailed events
+        this._oModel.attachRequestSent(this._onRequestCompleted, this);
+        this._oModel.attachRequestFailed(this._onRequestFailed, this);
+
         /*
         var oSmartTable = this.getView().byId("table001");
 
@@ -192,6 +198,84 @@ sap.ui.define(
             );
           }
         });
+      },
+      _onRequestFailed: function (oEvent) {
+        // If an error message is already displayed, don't show it again
+        if (this._bErrorDisplayed) {
+          return;
+        }
+
+        // Get the error parameters from the event
+        var oParams = oEvent.getParameters();
+        var sMessage = this._extractErrorMessage(
+          oParams.response.responseText,
+          oParams.response.headers["Content-Type"]
+        );
+
+        // Display the error message in a popup
+        MessageBox.error("Error: " + sMessage, {
+          title: "Error",
+          onClose: function () {
+            // When the popup is closed, allow future error messages to be displayed
+            this._bErrorDisplayed = false;
+          }.bind(this),
+        });
+
+        // Set the control variable to true to prevent duplicate messages
+        this._bErrorDisplayed = true;
+      },
+      _onRequestCompleted: function (oEvent) {
+        // If the request is successful, reset the error display flag
+        var oParams = oEvent.getParameters();
+        if (oParams.success) {
+          this._bErrorDisplayed = false; // Reset error flag on successful completion
+        }
+      },
+      _extractErrorMessage: function (responseText, contentType) {
+        // Try to parse JSON or XML to extract meaningful error messages
+        try {
+          // Handle JSON response
+          if (contentType && contentType.includes("application/json")) {
+            var oErrorResponse = JSON.parse(responseText);
+
+            // Check for errordetails inside innererror and ensure it has elements
+            if (
+              oErrorResponse.error &&
+              oErrorResponse.error.innererror &&
+              oErrorResponse.error.innererror.errordetails &&
+              oErrorResponse.error.innererror.errordetails.length > 0
+            ) {
+              return oErrorResponse.error.innererror.errordetails[0].message;
+            }
+
+            // Fallback to main message if no errordetails
+            if (
+              oErrorResponse.error &&
+              oErrorResponse.error.message &&
+              oErrorResponse.error.message.value
+            ) {
+              return oErrorResponse.error.message.value;
+            }
+          }
+
+          // Handle XML response
+          if (contentType && contentType.includes("application/xml")) {
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(responseText, "text/xml");
+
+            // Extract the message tag value
+            var messageNode = xmlDoc.getElementsByTagName("message")[0];
+            if (messageNode) {
+              return messageNode.textContent; // Return the message content
+            }
+          }
+
+          // If no specific message is found, return a generic message
+          return "An unknown error occurred.";
+        } catch (e) {
+          // If parsing fails, return the responseText as fallback
+          return responseText || "Error parsing the response.";
+        }
       },
       onBeforeExport: function (oEvent) {
         // Default worked as false
@@ -785,7 +869,9 @@ sap.ui.define(
         }
       },
       _convertDate: function (dateStr) {
-        var dateParts = dateStr.includes("/") ? dateStr.split("/") : dateStr.split(".");
+        var dateParts = dateStr.includes("/")
+          ? dateStr.split("/")
+          : dateStr.split(".");
         var month = dateParts[0].padStart(2, "0");
         var day = dateParts[1].padStart(2, "0");
         var year =
